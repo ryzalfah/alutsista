@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\SenjataController;
 use \App\Http\Controllers\KendaraanController;
 use \App\Http\Controllers\PinjamController;
@@ -20,39 +20,18 @@ use \App\Http\Controllers\PinjamController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::get('/register', function () {
-    return view('auth.register');
-});
-
-Route::get('/lupa', function () {
-    return view('auth.lupa');
-});
-
-Route::get('/senjata', function () {
-    return view('senjata.senjata');
-});
-
-Route::get('/senjata/input', function () {
-    return view('senjata.input');
-});
-
-Route::get('/senjata/pinjam', function () {
-    return view('senjata.pinjam');
-});
-
-Route::get('/kendaraan', function () {
-    return view('kendaraan.kendaraan');
-});
-
-Route::get('/kendaraan/input', function () {
-    return view('kendaraan.input');
-});
-
-Route::get('/kendaraan/pinjam', function () {
-    return view('kendaraan.pinjam');
-});
+// Admin Controller
+Route::get('/login', [AdminController::class,'index'])->name('auth.index');
+Route::get('/logout', [AdminController::class,'logout'])->name('auth.logout');
+Route::post('/login', [AdminController::class,'process'])->name('auth.process');
+// Senjata Controller
+Route::get('/senjata', [SenjataController::class,'index'])->name('senjata.senjata');
+Route::get('/senjata/input', [SenjataController::class,'create'])->name('senjata.input');
+Route::post('/senjata', [SenjataController::class,'store'])->name('senjata.store');
+Route::get('/senjata/{senjata}', [SenjataController::class,'show'])->name('senjata.show');
+// Kendaraan Controller
+Route::get('/Kendaraan', [KendaraanController::class,'index'])->name('Kendaraan.Kendaraan');
+Route::get('/Kendaraan/input', [KendaraanController::class,'create'])->name('Kendaraan.input');
+Route::post('/Kendaraan', [KendaraanController::class,'store'])->name('Kendaraan.store');
+Route::get('/Kendaraan/{senjata}', [KendaraanController::class,'show'])->name('Kendaraan.show');
+// Pinjam Controller

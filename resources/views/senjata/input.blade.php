@@ -38,7 +38,7 @@
 <!-- navbar end -->
 <body>
 <!-- form Section start -->
-<form action="" method="POST" class="form" enctype="multipart/formdata">
+<form action="{{ route ('senjata.store') }}" method="POST" class="form" enctype="multipart/formdata">
     <div class="nama-alutsista">
       <label for="nama-alutsista">Nama Alutsista</label>
       <input type="text" class="form-control" id="nama-alutsista" name="nama-alutsista" placeholder="Nama alutsista">

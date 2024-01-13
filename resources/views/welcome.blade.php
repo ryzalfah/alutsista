@@ -56,7 +56,7 @@
                 </div>
                 <div class="product-content">
                     <h3>P-3A Kal. 7.65 mm</h3>
-                    <a href="senjata.php"><i data-feather="arrow-right-circle"></i></a>
+                    <a href="/senjata"><i data-feather="arrow-right-circle"></i></a>
                 </div>
             </div>
             <div class="product-card">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="product-content">
                     <h3>Anoa 6x6 Mortar</h3>
-                    <a href="kendaraan.php"><i data-feather="arrow-right-circle"></i></a>
+                    <a href="/kendaraan"><i data-feather="arrow-right-circle"></i></a>
                 </div>
             </div>
         </div>

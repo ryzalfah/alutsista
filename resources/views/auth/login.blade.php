@@ -36,19 +36,26 @@
 <body>
 <h3>Masuk</h3>
 <!-- form Section start -->
-<form action="/login" method="POST" class="form">
-  <div class="form-group">
+<form action="{{ route('auth.process') }}" method="POST" class="form">
+        @csrf
+        <div class="form-group">
           <label for="username">Masukan Username</label>
-          <input type="text" class="form-control" id="username" name="username">
+          <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
+        @error('username')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
         </div>
         <div class="form-group">
           <label for="password">Masukan Password</label>
-          <input class="form-control" id="password" name="password">
-          </div>
-          <div class="belum">
+          <input class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
+        @error('password')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+        </div>
+        <div class="belum">
           belum punya akun?
         </div>
-          <div class="lupa">
+        <div class="lupa">
           <a href="/lupa">lupa password</a>
         </div>
         <div class="daftar">
