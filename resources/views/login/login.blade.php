@@ -57,15 +57,6 @@
         <div class="text-danger">{{ $message }}</div>
         @enderror
         </div>
-        <div class="belum">
-          belum punya akun?
-        </div>
-        <div class="lupa">
-          <a href="/lupa">lupa password</a>
-        </div>
-        <div class="daftar">
-          <a href="/register">daftar</a>
-        </div>
         <button type="submit" class="btn btn-danger">Masuk</button>
 </form>
 <!-- form Section end -->
