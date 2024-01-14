@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url('../image/backgound/bg2.png');
+    background-image: url('../image/backgound/background.png');
     background-color: #070101;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: #070101;
 }
 
 
@@ -55,65 +56,25 @@ body {
 }
 
 
-/* biodata */
+/* show */
 
 .row {
-    position: absolute;
+    color: #ffffff;
     background-color: rgba(1, 1, 1, 0.8);
     border-radius: 15px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 20px;
+    position: absolute;
     left: 15%;
     top: 10%;
     width: 75%;
 }
 
-
-/* form */
-
-.form {
-    padding: 10rem 30%;
-    width: 100%;
-    text-align: center;
-    top: 130px;
-    right: 0.1rem;
-}
-
-.form-group {
-    color: #fff;
-    font-weight: 700;
-    text-align: left;
-    margin-top: auto;
-    margin-bottom: 10px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    height: 40px;
-    border-radius: 10px;
-}
-
-.form-control-file {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.btn {
-    color: #000000;
-    font-weight: 700;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.btn-primary {
-    text-align: center;
-    position: fixed;
-    border-radius: 10px;
-    background-color: #d70303;
+.gambar {
+    height: 200px;
+    position: relative;
+    float: right;
+    margin-top: -22%;
+    margin-left: 13px;
+    border-radius: 20px;
 }
 
 
@@ -141,11 +102,6 @@ footer .socials a {
 
 footer .credit {
     font-size: 0.8rem;
-}
-
-footer .credit a {
-    color: rgb(0, 0, 0);
-    font-weight: 700;
 }
 
 

@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('assets/icons/icon.png')}}">
-    <title>{{$senjata->nama}}</title>
+    <title>{{$pinjam->peminjam}}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <link rel="stylesheet" href="{{asset('assets/css/show.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pinjam.css')}}">
 </head>
 <body>
 <!-- navbar -->
@@ -26,7 +26,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/senjata">Back</a>
+                        <a class="nav-link active" href="/kendaraan">Back</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -36,29 +36,27 @@
         </div>
     </nav>
 <!-- navbar end -->
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-12">
-            <h1 >{{$senjata->nama}}</h1>
-            <ul style="list-style: none;">
-                <li>Nama: {{$senjata->nama}} </li>
-                <li>No. Seri: {{$senjata->no_seri}} </li>
-                <li>Kapasitas: {{$senjata->tipe}} </li>
-                <li>Kapasitas: {{$senjata->kapasitas}} </li>
-                <li>Ukuran: {{$senjata->ukuran}} </li>
-                <li>Berat: {{$senjata->berat}} </li>
-                <li>Kecepatan: {{$senjata->kecepatan}} </li>
-                <li>Kapasitas: {{$senjata->proteksi}} </li>
-                <li>Status: {{$senjata->status}} </li>
-                <li>Pemilik: {{$senjata->pemilik}} </li>
-                <li>Sejarah: {{$senjata->sejarah}} </li>
-                <li>Pemakaian: {{$senjata->pemakaian}} </li>
-                <li><img src="{{url('')}}/{{$senjata->image}}" class="gambar" ></li>
-            </ul>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pt-3 d-flex justify-content-end align-items-center">
+                        <h1>{{$pinjam->peminjam}}</h1>
+                    </div>
+                    <ul>
+                        <li>Peminjam: {{$pinjam->peminjam}} </li>
+                        <li>Alutsista: {{$pinjam->alutsista}} </li>
+                        <li>kondisi: {{$pinjam->kondisi}} </li>
+                        <li>catatan: {{$pinjam->catatan}} </li>
+                        <li>Status:
+                        {{$pinjam->status == 'P' ? 'Belum Dikembalikan' : 'Sudah Dikembalikan'}}
+                        </li>
+                        <li>Tanggal Pinjam: {{$pinjam->tanggal_pinjam}} </li>
+                        <li>Tanggal Kembali: {{$pinjam->tanggal_kembali}} </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<!-- Footer start -->
+    <!-- Footer start -->
     <footer>
         <div class="socials">
             <a href="#"><i data-feather="instagram"></i></a>

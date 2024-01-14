@@ -12,7 +12,7 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <link rel="stylesheet" href="{{asset('assets/css/pinjam.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
 </head>
 
 <!-- navbar -->
@@ -26,9 +26,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/kendaraan">Back</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                 </ul>
@@ -37,30 +34,43 @@
     </nav>
 <!-- navbar end -->
 <body>
-
+<h3>Masuk</h3>
 <!-- form Section start -->
-<form action="" method="POST" class="form" enctype="multipart/formdata">
-  <div class="form-group">
-          <label for="nama">Nama</label>
-          <input type="text" class="form-control" id="nama" name="nama">
+<form action="{{ route('login.process') }}" method="POST" class="form">
+        @csrf
+        @if(session()->has('pesan'))
+        <div class="alert alert-success">
+        {{ session()->get('pesan') }}
+        </div>
+        @endif
+        <div class="form-group">
+          <label for="username">Masukan Username</label>
+          <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
+        @error('username')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
         </div>
         <div class="form-group">
-          <label for="alasan-meminjam">Alasan Meminjam</label>
-          <input class="form-control" id="alasan-meminjam" name="alasan-meminjam">
+          <label for="password">Masukan Password</label>
+          <input class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
+        @error('password')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
         </div>
-        <div class="form-group">
-          <label for="tujuan-meminjam">Tujuan Meminjam</label>
-          <input class="form-control" id="tujuan-meminjam" name="tujuan-meminjam">
+        <div class="belum">
+          belum punya akun?
         </div>
-        <div class="form-group">
-          <label for="lampiran-bukti-peminjaman">Lampiran Bukti Peminjaman</label>
-          <input type="file" class="form-control-file" id="lampiran-bukti-peminjaman" name="lampiran-bukti-peminjaman">
+        <div class="lupa">
+          <a href="/lupa">lupa password</a>
         </div>
-        <button type="submit" class="btn btn-danger">Submit</button>
+        <div class="daftar">
+          <a href="/register">daftar</a>
+        </div>
+        <button type="submit" class="btn btn-danger">Masuk</button>
 </form>
 <!-- form Section end -->
 
-    <!-- Footer start -->
+<!-- Footer start -->
     <footer>
         <div class="socials">
             <a href="#"><i data-feather="instagram"></i></a>

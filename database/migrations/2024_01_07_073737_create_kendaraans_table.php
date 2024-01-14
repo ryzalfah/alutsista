@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('kapasitas');
             $table->string('ukuran');
             $table->string('berat');
-            $table->string('daya tembak');
+            $table->string('daya_tembak');
             $table->string('kecepatan');
-            $table->string('gambar');
+            $table->string('image');
             $table->string('status');
             $table->string('pemilik');
             $table->string('sejarah');

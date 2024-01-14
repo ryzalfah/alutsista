@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('assets/icons/icon.png')}}">
-    <title>Alutsista Indonesia</title>
+    <title>Senjata Indonesia</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <link rel="stylesheet" href="{{asset('assets/css/pinjam.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/index.css')}}">
 </head>
 
+<body>
 <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
         <div class="container">
@@ -24,43 +25,40 @@
               </button>
             <div class="d-flex">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/kendaraan">Back</a>
-                    </li>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/senjata/create">Tambah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pinjam">Peminjaman</a>
+                    </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 <!-- navbar end -->
-<body>
-
-<!-- form Section start -->
-<form action="" method="POST" class="form" enctype="multipart/formdata">
-  <div class="form-group">
-          <label for="nama">Nama</label>
-          <input type="text" class="form-control" id="nama" name="nama">
+<!-- Hero Section start -->
+<section class="hero" id="home">
+    <h1>Senjata<span>Tempur</span></h1>
+    <div class="row">
+    @foreach ($senjatas as $senjata)
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{url('')}}/{{$senjata->image}}" alt="Product 1">
+            </div>
+            <div class="product-content">
+                <a href="{{ route('senjata.show',['senjata' => $senjata->id]) }}"><h3>{{$senjata->nama}}</h3></a>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="alasan-meminjam">Alasan Meminjam</label>
-          <input class="form-control" id="alasan-meminjam" name="alasan-meminjam">
-        </div>
-        <div class="form-group">
-          <label for="tujuan-meminjam">Tujuan Meminjam</label>
-          <input class="form-control" id="tujuan-meminjam" name="tujuan-meminjam">
-        </div>
-        <div class="form-group">
-          <label for="lampiran-bukti-peminjaman">Lampiran Bukti Peminjaman</label>
-          <input type="file" class="form-control-file" id="lampiran-bukti-peminjaman" name="lampiran-bukti-peminjaman">
-        </div>
-        <button type="submit" class="btn btn-danger">Submit</button>
-</form>
-<!-- form Section end -->
-
-    <!-- Footer start -->
+    @endforeach
+    </div>
+</section>
+<!-- Hero Section end -->
+ <!-- Footer start -->
     <footer>
         <div class="socials">
             <a href="#"><i data-feather="instagram"></i></a>

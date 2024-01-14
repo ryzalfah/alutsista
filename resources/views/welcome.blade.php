@@ -22,7 +22,7 @@
                     </li>
                 </ul>
                 @auth
-                    <fron action="/logout" method="post">
+                    <form action="/logout" method="post">
                         @csrf
                         <button class="btn btn-danger"><a class="nav-link active">Logout</a></button>
                 @else

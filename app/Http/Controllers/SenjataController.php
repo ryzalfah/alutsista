@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Senjata;
+use Illuminate\Http\Request;
 use File;
 
 class SenjataController extends Controller
 {
     public function create()
     {
-        return view('senjata.input');
+        return view('senjata.create');
     }
 
     public function store(Request $request)
     {
         $validateData = $request->validate([
             'nama' => 'required|min:3|max:50',
-            'no_seri' => 'required|size:20',
+            'no_seri' => 'required|min:3|max:15',
             'kapasitas' => 'required',
             'ukuran' => 'required',
             'berat' => 'required',
@@ -30,41 +30,93 @@ class SenjataController extends Controller
             'pemakaian' => 'required',
             'image' => 'required|file|image|max:1000',
         ]);
-        $mahasiswa = new Senjata();
-        $mahasiswa->nama = $validateData['nama'];
-        $mahasiswa->no_seri = $validateData['no_seri'];
-        $mahasiswa->kapasitas = $validateData['kapasitas'];
-        $mahasiswa->ukuran = $validateData['ukuran'];
-        $mahasiswa->berat = $validateData['berat'];
-        $mahasiswa->daya_tembak = $validateData['daya_tembak'];
-        $mahasiswa->kecepatan = $validateData['kecepatan'];
-        $mahasiswa->status = $validateData['status'];
-        $mahasiswa->pemilik = $validateData['pemilik'];
-        $mahasiswa->sejarah = $validateData['sejarah'];
-        $mahasiswa->pemakaian = $validateData['pemakaian'];
+        $senjata = new Senjata();
+        $senjata->nama = $validateData['nama'];
+        $senjata->no_seri = $validateData['no_seri'];
+        $senjata->kapasitas = $validateData['kapasitas'];
+        $senjata->ukuran = $validateData['ukuran'];
+        $senjata->berat = $validateData['berat'];
+        $senjata->daya_tembak = $validateData['daya_tembak'];
+        $senjata->kecepatan = $validateData['kecepatan'];
+        $senjata->status = $validateData['status'];
+        $senjata->pemilik = $validateData['pemilik'];
+        $senjata->sejarah = $validateData['sejarah'];
+        $senjata->pemakaian = $validateData['pemakaian'];
         if($request->hasFile('image'))
         {
             $extFile = $request->image->getClientOriginalExtension();
             $namaFile = 'user-'.time().".".$extFile;
             $path = $request->image->move('assets/image/senjata',$namaFile);
-            $mahasiswa->gambar = $path;
+            $senjata->image = $path;
         }
-        $mahasiswa->save();
+        $senjata->save();
         $request->session()->flash('pesan','Penambahan data berhasil');
-        return redirect()->route('senjata.senjata');
+        return redirect()->route('senjata.index');
     }
 
     public function index()
     {
-        $mahasiswas = Senjata::all();
-        return view('senjata.senjata',['senjata' => $mahasiswas]);
+        $senjatas = Senjata::all();
+        return view('senjata.index',['senjatas' => $senjatas]);
     }
-    
-    public function show($student_id)
+
+    public function show($senjata_id)
     {
-        $result = Student::findOrFail($student_id);
-        return view('student.show',['student' => $result]);
+        $result = Senjata::findOrFail($senjata_id);
+        return view('senjata.show',['senjata' => $result]);
     }
 
+    public function edit($senjata_id)
+    {
+        $result = Senjata::findOrFail($senjata_id);
+        return view('senjata.edit',['senjata' => $result]);
+    }
 
+    public function update(Request $request, Senjata $senjata)
+    {
+        $validateData = $request->validate([
+            'nama' => 'required|min:3|max:50',
+            'no_seri' => 'required|min:3|size:20',
+            'kapasitas' => 'required',
+            'ukuran' => 'required',
+            'berat' => 'required',
+            'berat' => 'required',
+            'daya_tembak' => 'required',
+            'kecepatan' => 'required',
+            'status' => 'required',
+            'pemilik' => 'required',
+            'sejarah' => 'required',
+            'pemakaian' => 'required',
+            'image' => 'required|file|image|max:1000',
+        ]);
+        $senjata->nama = $validateData['nama'];
+        $senjata->no_seri = $validateData['no_seri'];
+        $senjata->kapasitas = $validateData['kapasitas'];
+        $senjata->ukuran = $validateData['ukuran'];
+        $senjata->berat = $validateData['berat'];
+        $senjata->daya_tembak = $validateData['daya_tembak'];
+        $senjata->kecepatan = $validateData['kecepatan'];
+        $senjata->status = $validateData['status'];
+        $senjata->pemilik = $validateData['pemilik'];
+        $senjata->sejarah = $validateData['sejarah'];
+        $senjata->pemakaian = $validateData['pemakaian'];
+        if($request->hasFile('image'))
+        {
+            $extFile = $request->image->getClientOriginalExtension();
+            $namaFile = 'user-'.time().".".$extFile;
+            File::delete($senjata->image);
+            $path = $request->image->move('assets/images',$namaFile);
+            $senjata->image = $path;
+        }
+        $senjata->save();
+        $request->session()->flash('pesan','Perubahan data berhasil');
+        return redirect()->route('senjata.show',['senjata' => $senjata->id]);
+    }
+
+    public function destroy(Request $request, Senjata $senjata)
+    {
+        $senjata->delete();
+        $request->session()->flash('pesan','Hapus data berhasil');
+        return redirect()->route('senjata.index');
+    }
 }
